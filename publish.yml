@@ -1,0 +1,49 @@
+name: MyPI — Publication des menus
+
+on:
+  workflow_dispatch:        # déclenchement manuel depuis GitHub
+  schedule:
+    - cron: "0 7 * * 1-5"  # automatique lun-ven à 7h00 UTC (9h Paris)
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Installer les dépendances
+        run: pip install selenium webdriver-manager
+
+      - name: Installer Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Créer mypi_config.json depuis les secrets
+        run: |
+          cat > mypi_config.json <<EOF
+          {
+            "email": "${{ secrets.MYPI_EMAIL }}",
+            "mot_de_passe": "${{ secrets.MYPI_PASSWORD }}",
+            "etablissements": [
+              {"nom": "51 - NOURA TRAITEUR", "id": "51"}
+            ],
+            "email_confirmation": "${{ secrets.MYPI_EMAIL }}"
+          }
+          EOF
+
+      - name: Lancer la publication
+        run: python mypi_publish.py
+
+      - name: Sauvegarder le log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mypi-log-${{ github.run_number }}
+          path: mypi_publish.log
+          retention-days: 30
