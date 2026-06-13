@@ -1,0 +1,4 @@
+mypi_config.json
+mypi_publish.log
+__pycache__/
+*.pyc
