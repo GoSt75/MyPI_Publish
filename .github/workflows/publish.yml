@@ -3,28 +3,48 @@ name: MyPI — Publication des menus
 on:
   workflow_dispatch:        # déclenchement manuel depuis GitHub
   schedule:
-    - cron: "30 5 * * *"  # tous les jours à 5h30 UTC = 7h30 Paris (heure d'été)
+    - cron: "30 5 * * *"  # 5h30 UTC = 7h30 Paris heure d'été  (UTC+2)
+    - cron: "30 6 * * *"  # 6h30 UTC = 7h30 Paris heure d'hiver (UTC+1)
 
 jobs:
   publier:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Vérifier l'heure Paris (évite le double déclenchement aux changements d'heure)
+        id: check_heure
+        run: |
+          HEURE=$(TZ="Europe/Paris" date +"%H:%M")
+          echo "Heure Paris : $HEURE"
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            echo "run=true" >> $GITHUB_OUTPUT
+          elif [[ "$HEURE" > "07:24" && "$HEURE" < "07:46" ]]; then
+            echo "run=true" >> $GITHUB_OUTPUT
+          else
+            echo "run=false" >> $GITHUB_OUTPUT
+            echo "Déclenchement hors fenêtre 7h25-7h45 Paris — annulé."
+          fi
+
       - name: Checkout
+        if: steps.check_heure.outputs.run == 'true'
         uses: actions/checkout@v4
 
       - name: Python 3.11
+        if: steps.check_heure.outputs.run == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Installer les dépendances
+        if: steps.check_heure.outputs.run == 'true'
         run: pip install selenium webdriver-manager
 
       - name: Installer Chrome
+        if: steps.check_heure.outputs.run == 'true'
         uses: browser-actions/setup-chrome@v1
 
       - name: Créer mypi_config.json depuis les secrets
+        if: steps.check_heure.outputs.run == 'true'
         run: |
           cat > mypi_config.json <<EOF
           {
@@ -38,10 +58,11 @@ jobs:
           EOF
 
       - name: Lancer la publication
+        if: steps.check_heure.outputs.run == 'true'
         run: python mypi_publish.py
 
       - name: Sauvegarder le log
-        if: always()
+        if: always() && steps.check_heure.outputs.run == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: mypi-log-${{ github.run_number }}
