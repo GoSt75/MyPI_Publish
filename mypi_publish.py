@@ -424,8 +424,12 @@ def main():
 
     from selenium.webdriver.chrome.service import Service
     if chromedriver_bin:
-        log(f"ChromeDriver  : {chromedriver_bin}")
-        driver = webdriver.Chrome(service=Service(chromedriver_bin), options=options)
+        # CHROMEWEBDRIVER peut pointer vers un dossier ou l'exécutable directement
+        cd_path = Path(chromedriver_bin)
+        if cd_path.is_dir():
+            cd_path = cd_path / "chromedriver"
+        log(f"ChromeDriver  : {cd_path}")
+        driver = webdriver.Chrome(service=Service(str(cd_path)), options=options)
     else:
         try:
             from webdriver_manager.chrome import ChromeDriverManager
