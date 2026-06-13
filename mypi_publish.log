@@ -1,0 +1,30 @@
+[2026-06-13 10:23:30] ============================================================
+[2026-06-13 10:23:30]   DÉMARRAGE  —  13/06/2026 10:23:30
+[2026-06-13 10:23:30] ============================================================
+[2026-06-13 10:23:31] Connexion…
+[2026-06-13 10:23:38] Connecté ✓
+[2026-06-13 10:23:38] 
+──────────────────────────────────────────────────
+[2026-06-13 10:23:38] Sélection : 51 - NOURA TRAITEUR
+[2026-06-13 10:23:38] DEBUG 1 : fermer_panneau_si_ouvert
+[2026-06-13 10:23:38] DEBUG 2 : ouvrir_selecteur
+[2026-06-13 10:23:38] DEBUG sélecteur — boutons header : 0: tag=ATH-MAIN-SITE-SELECTOR text="" aria="" class="ath-main-site-selector hydrated" || 1: tag=BUTTON text="rocket_outline" aria="" class="[--atw-comp-button-radius:var(--ath-sys-" || 2: tag=BUTTON text="play_arrow
+3" aria="" class="[--atw-comp-button-radius:var(--ath-sys-" || 3: tag=BUTTON text="alt_route_outline" aria="" class="[--atw-comp-button-radius:var(--ath-sys-" || 4: tag=BUTTON text="settings_outline" aria="" class="[--atw-comp-button-radius:var(--ath-sys-" || 5: tag=BUTTON text="SG" aria="" class="[--atw-comp-button-radius:var(--ath-sys-" || 6: tag=BUTTON text="" aria="" class="ath-account-link"
+[2026-06-13 10:23:38] DEBUG sélecteur — stratégie utilisée : shadow-inner
+[2026-06-13 10:23:39] DEBUG 3 : attente modal 'Sélectionnez'
+[2026-06-13 10:23:39] DEBUG 4 : recherche radio button
+[2026-06-13 10:23:39] DEBUG 4b — options modal : Vue carte | Vue carte | Gestion de prix | Gestion de prix | Vue tableau | Vue tableau | rocket_outline | rocket_outline | play_arrow
+3 | play_arrow | 3 | alt_route_outline | alt_route_outline | settings_outline | settings_outline | SG | Publier | Publier | Publier sur plusieurs sites | Publier sur plusieurs sites
+[2026-06-13 10:23:39] DEBUG 5 : clic radio
+[2026-06-13 10:23:42] '51 - NOURA TRAITEUR' chargé ✓
+[2026-06-13 10:23:42] Ouverture du panneau de publication…
+[2026-06-13 10:23:57] Panneau ouvert via icône rocket ✓
+[2026-06-13 10:23:57] Clic sur Publier…
+[2026-06-13 10:23:57] Publication en cours…
+[2026-06-13 10:24:05] Publié ✓ (dernière publication : 13/06/2026 - 10:21)
+[2026-06-13 10:24:12] 
+[2026-06-13 10:24:12] ══════════════════════════════════════════════════
+[2026-06-13 10:24:12]   RAPPORT  —  13/06/2026 10:24
+[2026-06-13 10:24:12] ══════════════════════════════════════════════════
+[2026-06-13 10:24:12]   ✅  51 - NOURA TRAITEUR  (publié le 13/06/2026 - 10:21)
+[2026-06-13 10:24:12] ══════════════════════════════════════════════════
