@@ -3,7 +3,7 @@ name: MyPI — Publication des menus
 on:
   workflow_dispatch:        # déclenchement manuel depuis GitHub
   schedule:
-    - cron: "0 7 * * 1-5"  # automatique lun-ven à 7h00 UTC (9h Paris)
+    - cron: "30 5 * * *"  # tous les jours à 5h30 UTC = 7h30 Paris (heure d'été)
 
 jobs:
   publier:
